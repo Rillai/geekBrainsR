@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import { Message } from './components/message';
+import { NessageField } from './components/messageField';
 
-function App() {
+const App = () => {
+  const [messages, setMessages] = useState([{ id: 0, message: 'dobri den', author: 'me' }, { id: 1, message: 'Privet', author: 'me' }, { id: 2, message: 'React curse', author: 'me' }])
+  useEffect(() => {
+    if (messages[messages.length - 1].author == 'me') {
+      addMessage('Не пиши сюда больше', 'Robot')
+    }
+  }, [messages])
+  const addMessage = (message, author) => {
+    const id = messages[messages.length - 1].id+1
+    if (!!message) {
+      setMessages([...messages, { id: id, message: message, author: author }])
+    }
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {messages.map(message => <Message key={messages.id} message={message} />)}
+      <NessageField addMessage={addMessage} />
     </div>
   );
 }
