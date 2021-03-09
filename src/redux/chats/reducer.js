@@ -1,3 +1,5 @@
+import { ADD_MESSAGE_TO_CHAT } from './types'
+
 const initialState = {
 	chats: [
 		{
@@ -27,7 +29,18 @@ const initialState = {
 	],
 }
 const handlersActions = {
-	// [SET_USER_INFO]: (state, action) => ({ ...state, userInfo: action.userInfo, }),
+	[ADD_MESSAGE_TO_CHAT]: (state, action) => ({
+		...state,
+		chats: state.chats.map((chat, i) => {
+			if (i === action.selectedChatIndex) {
+				return {
+					...chat,
+					messageList: [chat.messageList, action.message],
+				}
+			}
+			return chat
+		}),
+	}),
 	// [SET_CARD_INFO]: (state, action) => ({ ...state, cardInfo: action.cardInfo }),
 	// [SET_USER_ADRESS]: (state, action) => ({ ...state, userAdress: action.userAdress }),
 }

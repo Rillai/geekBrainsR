@@ -1,2 +1,1 @@
-export const ADD_PRODUCT = 'ADD_PRODUCT'
-export const DELETE_PRODUCT = 'DELETE_PRODUCT'
+export const ADD_MESSAGE_TO_CHAT = 'ADD_MESSAGE_TO_CHAT'

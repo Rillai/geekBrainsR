@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router'
+import { addMessageToChat } from '../../../redux/chats/actions'
 import { ChatField } from './chatField'
 import { ChatList } from './chatList'
 
@@ -24,19 +25,17 @@ export const Chats = () => {
 		(message, author) => {
 			const id = selectedChat.messageList.length
 			if (!!message) {
-				const newChats = [...chats]
-				newChats[selectedChatIndex] = {
-					...selectedChat,
-					messageList: [
-						...selectedChat.messageList,
+				dispatch(
+					addMessageToChat(
 						{ id, message, author },
-					],
-				}
-				setChats(newChats)
+						selectedChatIndex
+					)
+				)
 			}
 		},
-		[chats, selectedChat, selectedChatIndex]
+		[dispatch, selectedChat, selectedChatIndex]
 	)
+
 	return (
 		<>
 			<ChatList chats={chats} chatId={params.chatId} />
