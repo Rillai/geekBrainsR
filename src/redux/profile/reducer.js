@@ -1,24 +1,11 @@
 const initialState = {
-	userInfo: {
-		name: '',
-		lastName: '',
-		number: '',
-		email: '',
+	profile: {
+		name: 'Лёха',
+		img: '/path/to/img',
+		age: 13,
 	},
-	cardInfo: {
-		cardNumber: '',
-		cardHolder: '',
-		month: '',
-		year: '',
-		cw: '',
-	},
-	userAdress: { adress: '' },
 }
-const handlersInfo = {
-	// [SET_USER_INFO]: (state, action) => ({ ...state, userInfo: action.userInfo, }),
-	// [SET_CARD_INFO]: (state, action) => ({ ...state, cardInfo: action.cardInfo }),
-	// [SET_USER_ADRESS]: (state, action) => ({ ...state, userAdress: action.userAdress }),
-}
+const handlersInfo = {}
 
 export const ProfileReducer = (
 	state = initialState,

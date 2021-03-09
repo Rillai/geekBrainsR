@@ -31,11 +31,11 @@ const initialState = {
 const handlersActions = {
 	[ADD_MESSAGE_TO_CHAT]: (state, action) => ({
 		...state,
-		chats: state.chats.map((chat, i) => {
-			if (i === action.selectedChatIndex) {
+		chats: state.chats.map((chat) => {
+			if (chat.id === action.chatId) {
 				return {
 					...chat,
-					messageList: [chat.messageList, action.message],
+					messageList: [...chat.messageList, action.message],
 				}
 			}
 			return chat

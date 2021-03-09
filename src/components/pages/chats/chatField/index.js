@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { ChatTextField } from '../chatTextField'
+import { ChatTextField } from './chatTextField'
 import { Message } from './message'
 
 export const ChatField = (props) => {

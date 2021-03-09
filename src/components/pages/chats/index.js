@@ -15,25 +15,20 @@ export const Chats = () => {
 		[params, chats]
 	)
 
-	const selectedChatIndex = useMemo(
-		() =>
-			chats.findIndex((chat) => chat.id === params.chatId),
-		[params, chats]
-	)
-
 	const addMessage = useCallback(
 		(message, author) => {
-			const id = selectedChat.messageList.length
+			const id = `id+${selectedChat.messageList.length}`
 			if (!!message) {
 				dispatch(
-					addMessageToChat(
-						{ id, message, author },
-						selectedChatIndex
-					)
+					addMessageToChat(selectedChat?.id, {
+						id,
+						message,
+						author,
+					})
 				)
 			}
 		},
-		[dispatch, selectedChat, selectedChatIndex]
+		[dispatch, selectedChat]
 	)
 
 	return (
