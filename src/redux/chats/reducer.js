@@ -1,10 +1,11 @@
 import {
  ADD_MESSAGE_TO_CHAT,
  SET_CHATS_WITH_INCOMING_MESSAGE,
+ CLEAR_HIGHLIGHTING,
 } from './types'
 
 const initialState = {
- chatsWithIncomingMessage: '',
+ chatsWithIncomingMessage: [],
  chats: [
   {
    id: 'id1',
@@ -47,7 +48,14 @@ const handlersActions = {
  }),
  [SET_CHATS_WITH_INCOMING_MESSAGE]: (state, action) => ({
   ...state,
-  chatsWithIncomingMessage: action.chatId,
+  chatsWithIncomingMessage: [
+   ...state.chatsWithIncomingMessage,
+   action.id,
+  ],
+ }),
+ [CLEAR_HIGHLIGHTING]: (state) => ({
+  ...state,
+  chatsWithIncomingMessage: [],
  }),
 }
 

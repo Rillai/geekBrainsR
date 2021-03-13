@@ -1,6 +1,7 @@
 import {
  ADD_MESSAGE_TO_CHAT,
  SET_CHATS_WITH_INCOMING_MESSAGE,
+ CLEAR_HIGHLIGHTING,
 } from './types'
 
 export const addMessageToChat = (chatId, message) => ({
@@ -12,6 +13,10 @@ export const addMessageToChat = (chatId, message) => ({
 export const setChatsWithIncomingMessage = (id) => ({
  type: SET_CHATS_WITH_INCOMING_MESSAGE,
  id,
+})
+
+export const clearHighlighting = () => ({
+ type: CLEAR_HIGHLIGHTING,
 })
 
 export const addMessageToChatThunk = (chatId, message) => (
@@ -27,6 +32,9 @@ export const addMessageToChatThunk = (chatId, message) => (
     })
    )
    dispatch(setChatsWithIncomingMessage(chatId))
+   setTimeout(() => {
+    dispatch(clearHighlighting())
+   }, 5000)
   }, 1000)
  }
 }

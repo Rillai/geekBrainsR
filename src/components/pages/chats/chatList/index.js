@@ -8,6 +8,7 @@ import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import './style.css'
 
 export const ChatList = (props) => {
  const useStyles = makeStyles((theme) => ({
@@ -21,7 +22,6 @@ export const ChatList = (props) => {
  const incomingMessage = useSelector(
   (state) => state.chatsPage.chatsWithIncomingMessage
  )
-
  return (
   <List className={classes.root}>
    {props.chats.map((chat, i) => {
@@ -30,7 +30,9 @@ export const ChatList = (props) => {
       key={i}
       onClick={() => history.push(`/chats/${chat.id}`)}
       className={
-       chat.id === incomingMessage ? 'hadAMessege' : ''
+       incomingMessage.includes(chat.id)
+        ? 'hadAMessege'
+        : ''
       }>
       <ListItem alignItems='flex-start'>
        <ListItemAvatar>
